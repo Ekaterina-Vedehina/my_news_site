@@ -3,13 +3,13 @@ import math
 
 
 def help_text(numbers):
-    if numbers == 1:
+    if numbers == '1':
         print('''
         Для генерации чисел введите: random
         Для включения калькулятора введите: cal
         Для выхода введите 'esc' 
         ''')
-    elif numbers == 2:
+    elif numbers == '2':
         print('''
         ____________________________________
         Функционал:
