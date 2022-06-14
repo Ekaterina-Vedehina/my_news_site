@@ -1,0 +1,19 @@
+body {
+    background-image: url(https://kartinkin.net/uploads/posts/2021-04/1617583242_27-p-fon-dlya-novostei-27.png); /* Путь к фоновому изображению */
+    background-attachment: fixed;
+    background-color: #87CEFA; /* Цвет фона */
+   }
+h1 {
+    color: #FFFFFF;
+}
+.button-all-news {
+    --bs-btn-color: #fff;
+    --bs-btn-hover-color: #fff;
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-decoration-thickness: auto;
+    text-transform: none
+}
+.errorlist {
+    color: #FF0000;
+}

@@ -1,0 +1,39 @@
+{% extends 'base.html'%}
+
+{% block title %}{{title}}{% endblock %}
+{% block list_name %}{{list_name}}{% endblock %}
+{% block sitebar %}
+{% include 'include/_sitebar.html' %}
+{% endblock %}
+{% block content %}
+{% for item in news %}
+<div class="card mb-3">
+    <div class="card-header">
+        Категория: <a href="{{ item.category.get_absolute_url }}">{{item.category.title}}</a>
+    </div>
+    <div class="card-body">
+        <div class="media">
+            {% if item.snapshot %}
+            <img src="{{MEDIA_URL}}{{ item.snapshot.url }}" alt="Изображение" width="350" class=" img-thumbnail mr-3">
+            {% else %}
+            <img src="https://vet-com.ru/wp-content/uploads/2018/04/news.png"
+                 alt="Изображение" widht="350" class=" img-thumbnail mr-3">
+            {% endif %}
+            <div class="media-body">
+                <h5 class="card-title">{{ item.title }}</h5>
+                <p class="card-text">{{ item.content|linebreaks|truncatewords:50}}</p>
+                <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Читать больше</a>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        {{ item.creation_date| date:"Y-m-d H:i:s"}}
+    </div>
+</div>
+
+{% endfor %}
+<div class="d-grid gap-2">
+    <a href="{% url 'all_news' %}" type="button" class="btn btn-primary btn-block"> Больше новостей...</a>
+</div>
+</br>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html'%}
+
+{% block title %}Категория: {{ category.title }}{% endblock %}
+{% block list_name %}Показаны новости из категории: {{ category.title }}{% endblock %}
+{% block sitebar %}
+{% include 'include/_sitebar.html' %}
+{% endblock %}
+{% block content %}
+    {% for item in news %}
+    <div class="card mb-3">
+        <div class="card-header">
+            Категория: {{item.category.title}}
+        </div>
+        <div class="card-body">
+            <div class="media">
+                {% if item.snapshot %}
+                <img src="{{ item.snapshot.url }}" alt="Изобр" widht="350" class="img-thumbnail mr-3">
+                {% else %}
+                <img src="https://vet-com.ru/wp-content/uploads/2018/04/news.png"
+                     alt="Изображение" widht="350" class="img-thumbnail mr-3">
+                {% endif %}
+                <div class="media-body">
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <p class="card-text">{{ item.content|linebreaks|truncatewords:50}}</p>
+                    <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Читать больше</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer text-muted">
+            {{ item.creation_date| date:"Y-m-d H:i:s"}}
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}

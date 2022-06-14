@@ -1,0 +1,55 @@
+{% extends 'base.html'%}
+
+{% block title %} Создание новости {% endblock %}
+{% block list_name %} {% endblock %}
+{% block sitebar %}
+{% include 'include/_sitebar.html' %}
+{% endblock %}
+{% block content %}
+<h1 xmlns="http://www.w3.org/1999/html">Создание новости</h1>
+<div class="card mb-3">
+    <div class="card-body">
+        <form action="{% url 'add_news' %}" method="post">
+            {% csrf_token %}
+
+            {% comment %}
+            {{ form.as_p }}
+            {% endcomment %}
+
+            {{form.non_field.errors}}
+            <div class="form-group">
+                <label for="{{ form.title.id_for_label }}" class="form-label">Название новости: </label>
+                {{ form.title }}
+                <div class="invalid-feedback">
+                    {{ form.title.errors }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.content.id_for_label }}" class="form-label">Текст новости: </label>
+                {{ form.content }}
+                <div class="invalid-feedback">
+                    {{ form.content.errors }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.is_published.id_for_label }}" class="form-label">Опубликовать: </label>
+                {{ form.is_published }}
+                <div class="invalid-feedback">
+                    {{ form.is_published.errors }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.category.id_for_label }}" class="form-label">Категории: </label>
+                {{ form.category }}
+                <div class="invalid-feedback">
+                    {{ form.category.errors }}
+                </div>
+            </div>
+            </br>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary btn-block"> Создать новость</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+
+{% block title %} {{ new_item.title}} {% endblock %}
+{% block list_name %}Список новостей{% endblock %}
+{% block sitebar %}
+{% include 'include/_sitebar.html' %}
+{% endblock %}
+{% block content %}
+<div class="card mb-3">
+    <div class="card-header">
+        Категория: <a href="{{ new_item.category.get_absolute_url }}">{{new_item.category.title}}</a>
+    </div>
+    <div class="card-body">
+        <div class="media">
+            {% if new_item.snapshot %}
+            <img src="{{ new_item.snapshot.url }}" alt="Изобр" widht="350" class="img-thumbnail mr-3">
+            {% else %}
+            <img src="https://vet-com.ru/wp-content/uploads/2018/04/news.png"
+                 alt="Изображение" widht="350" class="img-thumbnail mr-3">
+            {% endif %}
+            <div class="media-body">
+                <h5 class="card-title">{{ new_item.title }}</h5>
+                <p class="card-text">{{ new_item.content|linebreaks}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        {{ new_item.creation_date| date:"Y-m-d H:i:s"}}
+    </div>
+</div>
+{% endblock %}
